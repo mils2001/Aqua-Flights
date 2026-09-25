@@ -180,6 +180,155 @@ function Home() {
         </div>
       </section>
 
+
+      {/* Our Story Section */}
+      <section className="bg-white px-6 py-20">
+        <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-600">
+              Our Story
+            </p>
+
+            <h2 className="mt-3 text-4xl font-bold leading-tight text-slate-900 md:text-5xl">
+              Inspired by a better way to travel
+            </h2>
+
+            <p className="mt-6 text-lg leading-8 text-slate-600">
+              Aqua Flights was created from a simple idea: air travel should
+              feel easier, more accessible, and more connected.
+            </p>
+
+            <p className="mt-4 text-lg leading-8 text-slate-600">
+              From discovering a flight to managing a booking, making a
+              payment, and receiving support, our goal is to bring the
+              important parts of the travel experience together in one
+              platform.
+            </p>
+
+            <p className="mt-4 text-lg leading-8 text-slate-600">
+              As Aqua Flights grows, we aim to combine modern technology with
+              human-centered customer service to create a travel experience
+              people can rely on.
+            </p>
+          </div>
+
+          <div className="relative">
+            <img
+              src={travelImage}
+              alt="Aqua Flights travel experience"
+              className="h-[450px] w-full rounded-3xl object-cover shadow-xl"
+            />
+
+            <div className="absolute -bottom-6 -left-6 rounded-2xl bg-slate-900 p-6 text-white shadow-xl">
+              <p className="text-3xl font-bold">AQUA</p>
+              <p className="text-sm text-slate-300">Travel beyond limits</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Customer Experience Section */}
+      <section className="bg-slate-50 px-6 py-20">
+        <div className="mx-auto max-w-7xl">
+          <div className="text-center">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-600">
+              Customer Experience
+            </p>
+
+            <h2 className="mt-3 text-4xl font-bold text-slate-900 md:text-5xl">
+              Designed around our passengers
+            </h2>
+
+            <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-600">
+              We are building Aqua Flights around convenience, reliability,
+              responsive support, and a smooth digital experience.
+            </p>
+          </div>
+
+          {/* Sample Statistics */}
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                value: '4.8/5',
+                label: 'Target Customer Rating',
+              },
+              {
+                value: '94%',
+                label: 'Target Satisfaction',
+              },
+              {
+                value: '< 10 min',
+                label: 'Target Support Response',
+              },
+              {
+                value: '24/7',
+                label: 'Digital Availability',
+              },
+            ].map((stat) => (
+              <div
+                key={stat.label}
+                className="rounded-2xl bg-white p-8 text-center shadow-sm"
+              >
+                <p className="text-4xl font-bold text-cyan-600">
+                  {stat.value}
+                </p>
+
+                <p className="mt-3 text-sm font-medium text-slate-600">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* Performance Graph */}
+          <div className="mt-12 rounded-2xl bg-white p-6 shadow-sm md:p-8">
+            <div className="flex flex-col justify-between gap-3 md:flex-row md:items-center">
+              <div>
+                <h3 className="text-2xl font-bold text-slate-900">
+                  Customer Experience Goals
+                </h3>
+
+                <p className="mt-1 text-sm text-slate-500">
+                  Illustrative targets — to be replaced with real company
+                  data.
+                </p>
+              </div>
+
+              <div className="text-sm text-slate-500">
+                Target performance
+              </div>
+            </div>
+
+            <div className="mt-8 space-y-6">
+              {[
+                { label: 'Customer Satisfaction', value: 94 },
+                { label: 'Booking Experience', value: 90 },
+                { label: 'Support Experience', value: 88 },
+                { label: 'Digital Convenience', value: 96 },
+              ].map((item) => (
+                <div key={item.label}>
+                  <div className="mb-2 flex justify-between text-sm font-medium">
+                    <span className="text-slate-700">{item.label}</span>
+                    <span className="text-cyan-600">{item.value}%</span>
+                  </div>
+
+                  <div className="h-3 overflow-hidden rounded-full bg-slate-200">
+                    <div
+                      className="h-full rounded-full bg-cyan-500 transition-all duration-1000"
+                      style={{ width: `${item.value}%` }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+
+
       {/* Call To Action */}
       <section className="bg-slate-900 px-6 py-20">
         <div className="mx-auto max-w-4xl text-center text-white">
