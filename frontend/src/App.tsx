@@ -1,5 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
+import Navbar from './components/Navbar'
+import Footer from './components/Footer'
+
 import Home from './pages/Home'
 import Flights from './pages/Flights'
 import Login from './pages/Login'
@@ -12,6 +15,8 @@ import AdminDashboard from './pages/AdminDashboard'
 function App() {
   return (
     <BrowserRouter>
+      <Navbar />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/flights" element={<Flights />} />
@@ -22,6 +27,8 @@ function App() {
         <Route path="/wallet" element={<Wallet />} />
         <Route path="/admin" element={<AdminDashboard />} />
       </Routes>
+
+      <Footer />
     </BrowserRouter>
   )
 }
