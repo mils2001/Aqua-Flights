@@ -3,6 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const auth_1 = require("../middleware/auth");
 const express_1 = require("express");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
@@ -111,6 +112,37 @@ router.post("/login", async (req, res) => {
     }
     catch (error) {
         console.error("Login error:", error);
+        return res.status(500).json({
+            message: "Internal server error",
+        });
+    }
+});
+// GET /api/auth/profile
+router.get("/profile", auth_1.authenticateToken, async (req, res) => {
+    try {
+        const user = await prisma_1.default.user.findUnique({
+            where: {
+                id: req.user.userId,
+            },
+            select: {
+                id: true,
+                name: true,
+                email: true,
+                createdAt: true,
+            },
+        });
+        if (!user) {
+            return res.status(404).json({
+                message: "User not found",
+            });
+        }
+        return res.status(200).json({
+            message: "Profile retrieved successfully",
+            user,
+        });
+    }
+    catch (error) {
+        console.error("Profile error:", error);
         return res.status(500).json({
             message: "Internal server error",
         });

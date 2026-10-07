@@ -1,3 +1,4 @@
+import { authenticateToken, AuthRequest } from "../middleware/auth"
 import { Router } from "express"
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
@@ -134,5 +135,37 @@ router.post("/login", async (req, res) => {
     })
   }
 })
+// GET /api/auth/profile
+router.get("/profile", authenticateToken, async (req: AuthRequest, res) => {
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        id: req.user!.userId,
+      },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        createdAt: true,
+      },
+    })
 
+    if (!user) {
+      return res.status(404).json({
+        message: "User not found",
+      })
+    }
+
+    return res.status(200).json({
+      message: "Profile retrieved successfully",
+      user,
+    })
+  } catch (error) {
+    console.error("Profile error:", error)
+
+    return res.status(500).json({
+      message: "Internal server error",
+    })
+  }
+})
 export default router
