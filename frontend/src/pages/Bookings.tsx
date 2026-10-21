@@ -150,7 +150,7 @@ function Bookings() {
 
   const [loginMessage, setLoginMessage] = useState('')
 
-  const [isLoggedIn, setIsLoggedIn] = useState(
+    const [, setIsLoggedIn] = useState(
     Boolean(localStorage.getItem('aquaFlightsLoggedIn')),
   )
 
