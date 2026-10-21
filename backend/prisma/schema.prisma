@@ -18,22 +18,25 @@ model User {
   bookings  Booking[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
- destinationImage String?
+ 
 }
+
 
 model Flight {
   id              Int               @id @default(autoincrement())
   flightNumber    String            @unique
-  origin           String
-  destination      String
-  originCode       String
-  destinationCode  String
-  basePrice        Float
-  totalSeats       Int
-  schedules        FlightSchedule[]
-  createdAt        DateTime          @default(now())
-  updatedAt        DateTime          @updatedAt
+  origin          String
+  destination     String
+  originCode      String
+  destinationCode String
+  destinationImage String?
+  basePrice       Float
+  totalSeats      Int
+  schedules       FlightSchedule[]
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
 }
+
 
 model FlightSchedule {
   id              Int      @id @default(autoincrement())

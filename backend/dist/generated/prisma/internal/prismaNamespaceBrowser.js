@@ -48,7 +48,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SortOrder = exports.BookingScalarFieldEnum = exports.FlightScheduleScalarFieldEnum = exports.FlightScalarFieldEnum = exports.UserScalarFieldEnum = exports.TransactionIsolationLevel = exports.ModelName = exports.AnyNull = exports.JsonNull = exports.DbNull = exports.NullTypes = exports.Decimal = void 0;
+exports.NullsOrder = exports.SortOrder = exports.BookingScalarFieldEnum = exports.FlightScheduleScalarFieldEnum = exports.FlightScalarFieldEnum = exports.UserScalarFieldEnum = exports.TransactionIsolationLevel = exports.ModelName = exports.AnyNull = exports.JsonNull = exports.DbNull = exports.NullTypes = exports.Decimal = void 0;
 const runtime = __importStar(require("@prisma/client/runtime/index-browser"));
 exports.Decimal = runtime.Decimal;
 exports.NullTypes = {
@@ -102,6 +102,7 @@ exports.FlightScalarFieldEnum = {
     destination: 'destination',
     originCode: 'originCode',
     destinationCode: 'destinationCode',
+    destinationImage: 'destinationImage',
     basePrice: 'basePrice',
     totalSeats: 'totalSeats',
     createdAt: 'createdAt',
@@ -133,5 +134,9 @@ exports.BookingScalarFieldEnum = {
 exports.SortOrder = {
     asc: 'asc',
     desc: 'desc'
+};
+exports.NullsOrder = {
+    first: 'first',
+    last: 'last'
 };
 //# sourceMappingURL=prismaNamespaceBrowser.js.map

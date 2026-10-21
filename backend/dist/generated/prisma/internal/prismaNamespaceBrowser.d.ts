@@ -53,6 +53,7 @@ export declare const FlightScalarFieldEnum: {
     readonly destination: 'destination';
     readonly originCode: 'originCode';
     readonly destinationCode: 'destinationCode';
+    readonly destinationImage: 'destinationImage';
     readonly basePrice: 'basePrice';
     readonly totalSeats: 'totalSeats';
     readonly createdAt: 'createdAt';
@@ -89,4 +90,9 @@ export declare const SortOrder: {
     readonly desc: 'desc';
 };
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder];
+export declare const NullsOrder: {
+    readonly first: 'first';
+    readonly last: 'last';
+};
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder];
 //# sourceMappingURL=prismaNamespaceBrowser.d.ts.map

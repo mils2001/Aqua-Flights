@@ -29,6 +29,7 @@ export type FlightMinAggregateOutputType = {
     destination: string | null;
     originCode: string | null;
     destinationCode: string | null;
+    destinationImage: string | null;
     basePrice: number | null;
     totalSeats: number | null;
     createdAt: Date | null;
@@ -41,6 +42,7 @@ export type FlightMaxAggregateOutputType = {
     destination: string | null;
     originCode: string | null;
     destinationCode: string | null;
+    destinationImage: string | null;
     basePrice: number | null;
     totalSeats: number | null;
     createdAt: Date | null;
@@ -53,6 +55,7 @@ export type FlightCountAggregateOutputType = {
     destination: number;
     originCode: number;
     destinationCode: number;
+    destinationImage: number;
     basePrice: number;
     totalSeats: number;
     createdAt: number;
@@ -76,6 +79,7 @@ export type FlightMinAggregateInputType = {
     destination?: true;
     originCode?: true;
     destinationCode?: true;
+    destinationImage?: true;
     basePrice?: true;
     totalSeats?: true;
     createdAt?: true;
@@ -88,6 +92,7 @@ export type FlightMaxAggregateInputType = {
     destination?: true;
     originCode?: true;
     destinationCode?: true;
+    destinationImage?: true;
     basePrice?: true;
     totalSeats?: true;
     createdAt?: true;
@@ -100,6 +105,7 @@ export type FlightCountAggregateInputType = {
     destination?: true;
     originCode?: true;
     destinationCode?: true;
+    destinationImage?: true;
     basePrice?: true;
     totalSeats?: true;
     createdAt?: true;
@@ -189,6 +195,7 @@ export type FlightGroupByOutputType = {
     destination: string;
     originCode: string;
     destinationCode: string;
+    destinationImage: string | null;
     basePrice: number;
     totalSeats: number;
     createdAt: Date;
@@ -212,6 +219,7 @@ export type FlightWhereInput = {
     destination?: Prisma.StringFilter<"Flight"> | string;
     originCode?: Prisma.StringFilter<"Flight"> | string;
     destinationCode?: Prisma.StringFilter<"Flight"> | string;
+    destinationImage?: Prisma.StringNullableFilter<"Flight"> | string | null;
     basePrice?: Prisma.FloatFilter<"Flight"> | number;
     totalSeats?: Prisma.IntFilter<"Flight"> | number;
     createdAt?: Prisma.DateTimeFilter<"Flight"> | Date | string;
@@ -225,6 +233,7 @@ export type FlightOrderByWithRelationInput = {
     destination?: Prisma.SortOrder;
     originCode?: Prisma.SortOrder;
     destinationCode?: Prisma.SortOrder;
+    destinationImage?: Prisma.SortOrderInput | Prisma.SortOrder;
     basePrice?: Prisma.SortOrder;
     totalSeats?: Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
@@ -241,6 +250,7 @@ export type FlightWhereUniqueInput = Prisma.AtLeast<{
     destination?: Prisma.StringFilter<"Flight"> | string;
     originCode?: Prisma.StringFilter<"Flight"> | string;
     destinationCode?: Prisma.StringFilter<"Flight"> | string;
+    destinationImage?: Prisma.StringNullableFilter<"Flight"> | string | null;
     basePrice?: Prisma.FloatFilter<"Flight"> | number;
     totalSeats?: Prisma.IntFilter<"Flight"> | number;
     createdAt?: Prisma.DateTimeFilter<"Flight"> | Date | string;
@@ -254,6 +264,7 @@ export type FlightOrderByWithAggregationInput = {
     destination?: Prisma.SortOrder;
     originCode?: Prisma.SortOrder;
     destinationCode?: Prisma.SortOrder;
+    destinationImage?: Prisma.SortOrderInput | Prisma.SortOrder;
     basePrice?: Prisma.SortOrder;
     totalSeats?: Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
@@ -274,6 +285,7 @@ export type FlightScalarWhereWithAggregatesInput = {
     destination?: Prisma.StringWithAggregatesFilter<"Flight"> | string;
     originCode?: Prisma.StringWithAggregatesFilter<"Flight"> | string;
     destinationCode?: Prisma.StringWithAggregatesFilter<"Flight"> | string;
+    destinationImage?: Prisma.StringNullableWithAggregatesFilter<"Flight"> | string | null;
     basePrice?: Prisma.FloatWithAggregatesFilter<"Flight"> | number;
     totalSeats?: Prisma.IntWithAggregatesFilter<"Flight"> | number;
     createdAt?: Prisma.DateTimeWithAggregatesFilter<"Flight"> | Date | string;
@@ -285,6 +297,7 @@ export type FlightCreateInput = {
     destination: string;
     originCode: string;
     destinationCode: string;
+    destinationImage?: string | null;
     basePrice: number;
     totalSeats: number;
     createdAt?: Date | string;
@@ -298,6 +311,7 @@ export type FlightUncheckedCreateInput = {
     destination: string;
     originCode: string;
     destinationCode: string;
+    destinationImage?: string | null;
     basePrice: number;
     totalSeats: number;
     createdAt?: Date | string;
@@ -310,6 +324,7 @@ export type FlightUpdateInput = {
     destination?: Prisma.StringFieldUpdateOperationsInput | string;
     originCode?: Prisma.StringFieldUpdateOperationsInput | string;
     destinationCode?: Prisma.StringFieldUpdateOperationsInput | string;
+    destinationImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     basePrice?: Prisma.FloatFieldUpdateOperationsInput | number;
     totalSeats?: Prisma.IntFieldUpdateOperationsInput | number;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -323,6 +338,7 @@ export type FlightUncheckedUpdateInput = {
     destination?: Prisma.StringFieldUpdateOperationsInput | string;
     originCode?: Prisma.StringFieldUpdateOperationsInput | string;
     destinationCode?: Prisma.StringFieldUpdateOperationsInput | string;
+    destinationImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     basePrice?: Prisma.FloatFieldUpdateOperationsInput | number;
     totalSeats?: Prisma.IntFieldUpdateOperationsInput | number;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -336,6 +352,7 @@ export type FlightCreateManyInput = {
     destination: string;
     originCode: string;
     destinationCode: string;
+    destinationImage?: string | null;
     basePrice: number;
     totalSeats: number;
     createdAt?: Date | string;
@@ -347,6 +364,7 @@ export type FlightUpdateManyMutationInput = {
     destination?: Prisma.StringFieldUpdateOperationsInput | string;
     originCode?: Prisma.StringFieldUpdateOperationsInput | string;
     destinationCode?: Prisma.StringFieldUpdateOperationsInput | string;
+    destinationImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     basePrice?: Prisma.FloatFieldUpdateOperationsInput | number;
     totalSeats?: Prisma.IntFieldUpdateOperationsInput | number;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -359,6 +377,7 @@ export type FlightUncheckedUpdateManyInput = {
     destination?: Prisma.StringFieldUpdateOperationsInput | string;
     originCode?: Prisma.StringFieldUpdateOperationsInput | string;
     destinationCode?: Prisma.StringFieldUpdateOperationsInput | string;
+    destinationImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     basePrice?: Prisma.FloatFieldUpdateOperationsInput | number;
     totalSeats?: Prisma.IntFieldUpdateOperationsInput | number;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -371,6 +390,7 @@ export type FlightCountOrderByAggregateInput = {
     destination?: Prisma.SortOrder;
     originCode?: Prisma.SortOrder;
     destinationCode?: Prisma.SortOrder;
+    destinationImage?: Prisma.SortOrder;
     basePrice?: Prisma.SortOrder;
     totalSeats?: Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
@@ -388,6 +408,7 @@ export type FlightMaxOrderByAggregateInput = {
     destination?: Prisma.SortOrder;
     originCode?: Prisma.SortOrder;
     destinationCode?: Prisma.SortOrder;
+    destinationImage?: Prisma.SortOrder;
     basePrice?: Prisma.SortOrder;
     totalSeats?: Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
@@ -400,6 +421,7 @@ export type FlightMinOrderByAggregateInput = {
     destination?: Prisma.SortOrder;
     originCode?: Prisma.SortOrder;
     destinationCode?: Prisma.SortOrder;
+    destinationImage?: Prisma.SortOrder;
     basePrice?: Prisma.SortOrder;
     totalSeats?: Prisma.SortOrder;
     createdAt?: Prisma.SortOrder;
@@ -413,6 +435,9 @@ export type FlightSumOrderByAggregateInput = {
 export type FlightScalarRelationFilter = {
     is?: Prisma.FlightWhereInput;
     isNot?: Prisma.FlightWhereInput;
+};
+export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null;
 };
 export type FloatFieldUpdateOperationsInput = {
     set?: number;
@@ -439,6 +464,7 @@ export type FlightCreateWithoutSchedulesInput = {
     destination: string;
     originCode: string;
     destinationCode: string;
+    destinationImage?: string | null;
     basePrice: number;
     totalSeats: number;
     createdAt?: Date | string;
@@ -451,6 +477,7 @@ export type FlightUncheckedCreateWithoutSchedulesInput = {
     destination: string;
     originCode: string;
     destinationCode: string;
+    destinationImage?: string | null;
     basePrice: number;
     totalSeats: number;
     createdAt?: Date | string;
@@ -475,6 +502,7 @@ export type FlightUpdateWithoutSchedulesInput = {
     destination?: Prisma.StringFieldUpdateOperationsInput | string;
     originCode?: Prisma.StringFieldUpdateOperationsInput | string;
     destinationCode?: Prisma.StringFieldUpdateOperationsInput | string;
+    destinationImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     basePrice?: Prisma.FloatFieldUpdateOperationsInput | number;
     totalSeats?: Prisma.IntFieldUpdateOperationsInput | number;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -487,6 +515,7 @@ export type FlightUncheckedUpdateWithoutSchedulesInput = {
     destination?: Prisma.StringFieldUpdateOperationsInput | string;
     originCode?: Prisma.StringFieldUpdateOperationsInput | string;
     destinationCode?: Prisma.StringFieldUpdateOperationsInput | string;
+    destinationImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     basePrice?: Prisma.FloatFieldUpdateOperationsInput | number;
     totalSeats?: Prisma.IntFieldUpdateOperationsInput | number;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -523,6 +552,7 @@ export type FlightSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     destination?: boolean;
     originCode?: boolean;
     destinationCode?: boolean;
+    destinationImage?: boolean;
     basePrice?: boolean;
     totalSeats?: boolean;
     createdAt?: boolean;
@@ -537,6 +567,7 @@ export type FlightSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
     destination?: boolean;
     originCode?: boolean;
     destinationCode?: boolean;
+    destinationImage?: boolean;
     basePrice?: boolean;
     totalSeats?: boolean;
     createdAt?: boolean;
@@ -549,6 +580,7 @@ export type FlightSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
     destination?: boolean;
     originCode?: boolean;
     destinationCode?: boolean;
+    destinationImage?: boolean;
     basePrice?: boolean;
     totalSeats?: boolean;
     createdAt?: boolean;
@@ -561,12 +593,13 @@ export type FlightSelectScalar = {
     destination?: boolean;
     originCode?: boolean;
     destinationCode?: boolean;
+    destinationImage?: boolean;
     basePrice?: boolean;
     totalSeats?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
 };
-export type FlightOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "flightNumber" | "origin" | "destination" | "originCode" | "destinationCode" | "basePrice" | "totalSeats" | "createdAt" | "updatedAt", ExtArgs["result"]["flight"]>;
+export type FlightOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "flightNumber" | "origin" | "destination" | "originCode" | "destinationCode" | "destinationImage" | "basePrice" | "totalSeats" | "createdAt" | "updatedAt", ExtArgs["result"]["flight"]>;
 export type FlightInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     schedules?: boolean | Prisma.Flight$schedulesArgs<ExtArgs>;
     _count?: boolean | Prisma.FlightCountOutputTypeDefaultArgs<ExtArgs>;
@@ -585,6 +618,7 @@ export type $FlightPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
         destination: string;
         originCode: string;
         destinationCode: string;
+        destinationImage: string | null;
         basePrice: number;
         totalSeats: number;
         createdAt: Date;
@@ -950,6 +984,7 @@ export interface FlightFieldRefs {
     readonly destination: Prisma.FieldRef<"Flight", 'String'>;
     readonly originCode: Prisma.FieldRef<"Flight", 'String'>;
     readonly destinationCode: Prisma.FieldRef<"Flight", 'String'>;
+    readonly destinationImage: Prisma.FieldRef<"Flight", 'String'>;
     readonly basePrice: Prisma.FieldRef<"Flight", 'Float'>;
     readonly totalSeats: Prisma.FieldRef<"Flight", 'Int'>;
     readonly createdAt: Prisma.FieldRef<"Flight", 'DateTime'>;
