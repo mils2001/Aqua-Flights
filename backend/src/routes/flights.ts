@@ -4,6 +4,81 @@ import prisma from "../lib/prisma"
 
 const router = Router()
 
+// GET /api/flights/search
+router.get("/search", async (req, res) => {
+  try {
+    const { origin, destination, date } = req.query
+
+    if (
+      typeof origin !== "string" ||
+      !origin.trim() ||
+      typeof destination !== "string" ||
+      !destination.trim() ||
+      typeof date !== "string" ||
+      !/^\d{4}-\d{2}-\d{2}$/.test(date)
+    ) {
+      return res.status(400).json({
+        message:
+          "Provide origin, destination, and date using YYYY-MM-DD format.",
+      })
+    }
+
+    const startDate = new Date(`${date}T00:00:00.000Z`)
+
+    if (
+      Number.isNaN(startDate.getTime()) ||
+      startDate.toISOString().slice(0, 10) !== date
+    ) {
+      return res.status(400).json({
+        message: "Provide a valid travel date.",
+      })
+    }
+
+    const endDate = new Date(startDate)
+    endDate.setUTCDate(endDate.getUTCDate() + 1)
+
+    const flights = await prisma.flight.findMany({
+      where: {
+        origin: { equals: origin.trim() },
+        destination: { equals: destination.trim() },
+        schedules: {
+          some: {
+            departureDate: { gte: startDate, lt: endDate },
+            status: "SCHEDULED",
+            availableSeats: { gt: 0 },
+          },
+        },
+      },
+      include: {
+        schedules: {
+          where: {
+            departureDate: { gte: startDate, lt: endDate },
+            status: "SCHEDULED",
+            availableSeats: { gt: 0 },
+          },
+          orderBy: { departureTime: "asc" },
+        },
+      },
+      orderBy: { basePrice: "asc" },
+    })
+
+    return res.status(200).json({
+      count: flights.length,
+      search: {
+        origin: origin.trim(),
+        destination: destination.trim(),
+        date,
+      },
+      flights,
+    })
+  } catch (error) {
+    console.error("Flight search error:", error)
+    return res.status(500).json({
+      message: "Could not search flights.",
+    })
+  }
+})
+
 // GET /api/flights
 router.get("/", async (_req, res) => {
   try {
@@ -30,7 +105,9 @@ router.get("/:id", async (req, res) => {
     const id = Number(req.params.id)
 
     if (!Number.isInteger(id) || id < 1) {
-      return res.status(400).json({ message: "Invalid flight ID" })
+      return res.status(400).json({
+        message: "Invalid flight ID",
+      })
     }
 
     const flight = await prisma.flight.findUnique({
@@ -39,7 +116,9 @@ router.get("/:id", async (req, res) => {
     })
 
     if (!flight) {
-      return res.status(404).json({ message: "Flight not found" })
+      return res.status(404).json({
+        message: "Flight not found",
+      })
     }
 
     return res.status(200).json({ flight })
@@ -123,7 +202,8 @@ router.post("/", async (req, res) => {
   } catch (error) {
     console.error("Create flight error:", error)
     return res.status(500).json({
-      message: "Could not create flight. Check whether the flight number already exists.",
+      message:
+        "Could not create flight. Check whether the flight number already exists.",
     })
   }
 })
@@ -135,7 +215,9 @@ router.put("/:id", async (req, res) => {
     const { destinationImage } = req.body
 
     if (!Number.isInteger(id) || id < 1) {
-      return res.status(400).json({ message: "Invalid flight ID" })
+      return res.status(400).json({
+        message: "Invalid flight ID",
+      })
     }
 
     if (
@@ -162,7 +244,9 @@ router.put("/:id", async (req, res) => {
     })
 
     if (!existingFlight) {
-      return res.status(404).json({ message: "Flight not found" })
+      return res.status(404).json({
+        message: "Flight not found",
+      })
     }
 
     const flight = await prisma.flight.update({
@@ -199,7 +283,9 @@ router.post("/:id/schedules", async (req, res) => {
     } = req.body
 
     if (!Number.isInteger(flightId) || flightId < 1) {
-      return res.status(400).json({ message: "Invalid flight ID" })
+      return res.status(400).json({
+        message: "Invalid flight ID",
+      })
     }
 
     if (
@@ -243,7 +329,9 @@ router.post("/:id/schedules", async (req, res) => {
     })
 
     if (!flight) {
-      return res.status(404).json({ message: "Flight not found" })
+      return res.status(404).json({
+        message: "Flight not found",
+      })
     }
 
     if (availableSeats > flight.totalSeats) {
