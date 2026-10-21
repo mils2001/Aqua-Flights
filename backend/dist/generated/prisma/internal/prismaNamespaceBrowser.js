@@ -48,7 +48,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SortOrder = exports.UserScalarFieldEnum = exports.TransactionIsolationLevel = exports.ModelName = exports.AnyNull = exports.JsonNull = exports.DbNull = exports.NullTypes = exports.Decimal = void 0;
+exports.SortOrder = exports.BookingScalarFieldEnum = exports.FlightScheduleScalarFieldEnum = exports.FlightScalarFieldEnum = exports.UserScalarFieldEnum = exports.TransactionIsolationLevel = exports.ModelName = exports.AnyNull = exports.JsonNull = exports.DbNull = exports.NullTypes = exports.Decimal = void 0;
 const runtime = __importStar(require("@prisma/client/runtime/index-browser"));
 exports.Decimal = runtime.Decimal;
 exports.NullTypes = {
@@ -75,7 +75,10 @@ exports.JsonNull = runtime.JsonNull;
  */
 exports.AnyNull = runtime.AnyNull;
 exports.ModelName = {
-    User: 'User'
+    User: 'User',
+    Flight: 'Flight',
+    FlightSchedule: 'FlightSchedule',
+    Booking: 'Booking'
 };
 /*
  * Enums
@@ -88,6 +91,42 @@ exports.UserScalarFieldEnum = {
     name: 'name',
     email: 'email',
     password: 'password',
+    role: 'role',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+};
+exports.FlightScalarFieldEnum = {
+    id: 'id',
+    flightNumber: 'flightNumber',
+    origin: 'origin',
+    destination: 'destination',
+    originCode: 'originCode',
+    destinationCode: 'destinationCode',
+    basePrice: 'basePrice',
+    totalSeats: 'totalSeats',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+};
+exports.FlightScheduleScalarFieldEnum = {
+    id: 'id',
+    flightId: 'flightId',
+    departureDate: 'departureDate',
+    departureTime: 'departureTime',
+    arrivalTime: 'arrivalTime',
+    availableSeats: 'availableSeats',
+    status: 'status',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+};
+exports.BookingScalarFieldEnum = {
+    id: 'id',
+    bookingReference: 'bookingReference',
+    userId: 'userId',
+    scheduleId: 'scheduleId',
+    passengers: 'passengers',
+    totalAmount: 'totalAmount',
+    status: 'status',
+    paymentStatus: 'paymentStatus',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
 };

@@ -1,7 +1,9 @@
+
 import express from "express"
 import cors from "cors"
 import dotenv from "dotenv"
 import authRoutes from "./routes/auth"
+import flightRoutes from "./routes/flights"
 
 dotenv.config()
 
@@ -27,6 +29,9 @@ app.get("/api/health", (_req, res) => {
 
 // Authentication routes
 app.use("/api/auth", authRoutes)
+
+// Flight routes
+app.use("/api/flights", flightRoutes)
 
 app.listen(PORT, () => {
   console.log(`Aqua Flights API running on http://localhost:${PORT}`)

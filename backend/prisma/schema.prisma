@@ -18,6 +18,7 @@ model User {
   bookings  Booking[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+ destinationImage String?
 }
 
 model Flight {

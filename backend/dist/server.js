@@ -7,6 +7,7 @@ const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const auth_1 = __importDefault(require("./routes/auth"));
+const flights_1 = __importDefault(require("./routes/flights"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 5000;
@@ -26,6 +27,8 @@ app.get("/api/health", (_req, res) => {
 });
 // Authentication routes
 app.use("/api/auth", auth_1.default);
+// Flight routes
+app.use("/api/flights", flights_1.default);
 app.listen(PORT, () => {
     console.log(`Aqua Flights API running on http://localhost:${PORT}`);
 });

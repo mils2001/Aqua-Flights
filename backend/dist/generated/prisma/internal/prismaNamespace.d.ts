@@ -245,6 +245,9 @@ export type FieldRef<Model, FieldType> = runtime.FieldRef<Model, FieldType>;
 type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRef<Model, FieldType>;
 export declare const ModelName: {
     readonly User: 'User';
+    readonly Flight: 'Flight';
+    readonly FlightSchedule: 'FlightSchedule';
+    readonly Booking: 'Booking';
 };
 export type ModelName = (typeof ModelName)[keyof typeof ModelName];
 export interface TypeMapCb<GlobalOmitOptions = {}> extends runtime.Types.Utils.Fn<{
@@ -257,7 +260,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         omit: GlobalOmitOptions;
     };
     meta: {
-        modelProps: "user";
+        modelProps: "user" | "flight" | "flightSchedule" | "booking";
         txIsolationLevel: TransactionIsolationLevel;
     };
     model: {
@@ -335,6 +338,228 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
                 };
             };
         };
+        Flight: {
+            payload: Prisma.$FlightPayload<ExtArgs>;
+            fields: Prisma.FlightFieldRefs;
+            operations: {
+                findUnique: {
+                    args: Prisma.FlightFindUniqueArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$FlightPayload> | null;
+                };
+                findUniqueOrThrow: {
+                    args: Prisma.FlightFindUniqueOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$FlightPayload>;
+                };
+                findFirst: {
+                    args: Prisma.FlightFindFirstArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$FlightPayload> | null;
+                };
+                findFirstOrThrow: {
+                    args: Prisma.FlightFindFirstOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$FlightPayload>;
+                };
+                findMany: {
+                    args: Prisma.FlightFindManyArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$FlightPayload>[];
+                };
+                create: {
+                    args: Prisma.FlightCreateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$FlightPayload>;
+                };
+                createMany: {
+                    args: Prisma.FlightCreateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                createManyAndReturn: {
+                    args: Prisma.FlightCreateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$FlightPayload>[];
+                };
+                delete: {
+                    args: Prisma.FlightDeleteArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$FlightPayload>;
+                };
+                update: {
+                    args: Prisma.FlightUpdateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$FlightPayload>;
+                };
+                deleteMany: {
+                    args: Prisma.FlightDeleteManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateMany: {
+                    args: Prisma.FlightUpdateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateManyAndReturn: {
+                    args: Prisma.FlightUpdateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$FlightPayload>[];
+                };
+                upsert: {
+                    args: Prisma.FlightUpsertArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$FlightPayload>;
+                };
+                aggregate: {
+                    args: Prisma.FlightAggregateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.AggregateFlight>;
+                };
+                groupBy: {
+                    args: Prisma.FlightGroupByArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.FlightGroupByOutputType>[];
+                };
+                count: {
+                    args: Prisma.FlightCountArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.FlightCountAggregateOutputType> | number;
+                };
+            };
+        };
+        FlightSchedule: {
+            payload: Prisma.$FlightSchedulePayload<ExtArgs>;
+            fields: Prisma.FlightScheduleFieldRefs;
+            operations: {
+                findUnique: {
+                    args: Prisma.FlightScheduleFindUniqueArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$FlightSchedulePayload> | null;
+                };
+                findUniqueOrThrow: {
+                    args: Prisma.FlightScheduleFindUniqueOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$FlightSchedulePayload>;
+                };
+                findFirst: {
+                    args: Prisma.FlightScheduleFindFirstArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$FlightSchedulePayload> | null;
+                };
+                findFirstOrThrow: {
+                    args: Prisma.FlightScheduleFindFirstOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$FlightSchedulePayload>;
+                };
+                findMany: {
+                    args: Prisma.FlightScheduleFindManyArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$FlightSchedulePayload>[];
+                };
+                create: {
+                    args: Prisma.FlightScheduleCreateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$FlightSchedulePayload>;
+                };
+                createMany: {
+                    args: Prisma.FlightScheduleCreateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                createManyAndReturn: {
+                    args: Prisma.FlightScheduleCreateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$FlightSchedulePayload>[];
+                };
+                delete: {
+                    args: Prisma.FlightScheduleDeleteArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$FlightSchedulePayload>;
+                };
+                update: {
+                    args: Prisma.FlightScheduleUpdateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$FlightSchedulePayload>;
+                };
+                deleteMany: {
+                    args: Prisma.FlightScheduleDeleteManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateMany: {
+                    args: Prisma.FlightScheduleUpdateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateManyAndReturn: {
+                    args: Prisma.FlightScheduleUpdateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$FlightSchedulePayload>[];
+                };
+                upsert: {
+                    args: Prisma.FlightScheduleUpsertArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$FlightSchedulePayload>;
+                };
+                aggregate: {
+                    args: Prisma.FlightScheduleAggregateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.AggregateFlightSchedule>;
+                };
+                groupBy: {
+                    args: Prisma.FlightScheduleGroupByArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.FlightScheduleGroupByOutputType>[];
+                };
+                count: {
+                    args: Prisma.FlightScheduleCountArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.FlightScheduleCountAggregateOutputType> | number;
+                };
+            };
+        };
+        Booking: {
+            payload: Prisma.$BookingPayload<ExtArgs>;
+            fields: Prisma.BookingFieldRefs;
+            operations: {
+                findUnique: {
+                    args: Prisma.BookingFindUniqueArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$BookingPayload> | null;
+                };
+                findUniqueOrThrow: {
+                    args: Prisma.BookingFindUniqueOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$BookingPayload>;
+                };
+                findFirst: {
+                    args: Prisma.BookingFindFirstArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$BookingPayload> | null;
+                };
+                findFirstOrThrow: {
+                    args: Prisma.BookingFindFirstOrThrowArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$BookingPayload>;
+                };
+                findMany: {
+                    args: Prisma.BookingFindManyArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$BookingPayload>[];
+                };
+                create: {
+                    args: Prisma.BookingCreateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$BookingPayload>;
+                };
+                createMany: {
+                    args: Prisma.BookingCreateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                createManyAndReturn: {
+                    args: Prisma.BookingCreateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$BookingPayload>[];
+                };
+                delete: {
+                    args: Prisma.BookingDeleteArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$BookingPayload>;
+                };
+                update: {
+                    args: Prisma.BookingUpdateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$BookingPayload>;
+                };
+                deleteMany: {
+                    args: Prisma.BookingDeleteManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateMany: {
+                    args: Prisma.BookingUpdateManyArgs<ExtArgs>;
+                    result: BatchPayload;
+                };
+                updateManyAndReturn: {
+                    args: Prisma.BookingUpdateManyAndReturnArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$BookingPayload>[];
+                };
+                upsert: {
+                    args: Prisma.BookingUpsertArgs<ExtArgs>;
+                    result: runtime.Types.Utils.PayloadToResult<Prisma.$BookingPayload>;
+                };
+                aggregate: {
+                    args: Prisma.BookingAggregateArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.AggregateBooking>;
+                };
+                groupBy: {
+                    args: Prisma.BookingGroupByArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.BookingGroupByOutputType>[];
+                };
+                count: {
+                    args: Prisma.BookingCountArgs<ExtArgs>;
+                    result: runtime.Types.Utils.Optional<Prisma.BookingCountAggregateOutputType> | number;
+                };
+            };
+        };
     };
 } & {
     other: {
@@ -371,10 +596,49 @@ export declare const UserScalarFieldEnum: {
     readonly name: 'name';
     readonly email: 'email';
     readonly password: 'password';
+    readonly role: 'role';
     readonly createdAt: 'createdAt';
     readonly updatedAt: 'updatedAt';
 };
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum];
+export declare const FlightScalarFieldEnum: {
+    readonly id: 'id';
+    readonly flightNumber: 'flightNumber';
+    readonly origin: 'origin';
+    readonly destination: 'destination';
+    readonly originCode: 'originCode';
+    readonly destinationCode: 'destinationCode';
+    readonly basePrice: 'basePrice';
+    readonly totalSeats: 'totalSeats';
+    readonly createdAt: 'createdAt';
+    readonly updatedAt: 'updatedAt';
+};
+export type FlightScalarFieldEnum = (typeof FlightScalarFieldEnum)[keyof typeof FlightScalarFieldEnum];
+export declare const FlightScheduleScalarFieldEnum: {
+    readonly id: 'id';
+    readonly flightId: 'flightId';
+    readonly departureDate: 'departureDate';
+    readonly departureTime: 'departureTime';
+    readonly arrivalTime: 'arrivalTime';
+    readonly availableSeats: 'availableSeats';
+    readonly status: 'status';
+    readonly createdAt: 'createdAt';
+    readonly updatedAt: 'updatedAt';
+};
+export type FlightScheduleScalarFieldEnum = (typeof FlightScheduleScalarFieldEnum)[keyof typeof FlightScheduleScalarFieldEnum];
+export declare const BookingScalarFieldEnum: {
+    readonly id: 'id';
+    readonly bookingReference: 'bookingReference';
+    readonly userId: 'userId';
+    readonly scheduleId: 'scheduleId';
+    readonly passengers: 'passengers';
+    readonly totalAmount: 'totalAmount';
+    readonly status: 'status';
+    readonly paymentStatus: 'paymentStatus';
+    readonly createdAt: 'createdAt';
+    readonly updatedAt: 'updatedAt';
+};
+export type BookingScalarFieldEnum = (typeof BookingScalarFieldEnum)[keyof typeof BookingScalarFieldEnum];
 export declare const SortOrder: {
     readonly asc: 'asc';
     readonly desc: 'desc';
@@ -547,6 +811,9 @@ export interface PrismaClientOptionsWithAdapter extends PrismaClientBaseOptions 
 export type PrismaClientOptions = PrismaClientOptionsWithAccelerateUrl | PrismaClientOptionsWithAdapter;
 export type GlobalOmitConfig = {
     user?: Prisma.UserOmit;
+    flight?: Prisma.FlightOmit;
+    flightSchedule?: Prisma.FlightScheduleOmit;
+    booking?: Prisma.BookingOmit;
 };
 export type LogLevel = 'info' | 'query' | 'warn' | 'error';
 export type LogDefinition = {

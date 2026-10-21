@@ -26,4 +26,19 @@ export { Prisma };
  *
  */
 export type User = Prisma.UserModel;
+/**
+ * Model Flight
+ *
+ */
+export type Flight = Prisma.FlightModel;
+/**
+ * Model FlightSchedule
+ *
+ */
+export type FlightSchedule = Prisma.FlightScheduleModel;
+/**
+ * Model Booking
+ *
+ */
+export type Booking = Prisma.BookingModel;
 //# sourceMappingURL=client.d.ts.map

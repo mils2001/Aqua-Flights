@@ -27,6 +27,9 @@ export declare const JsonNull: import("@prisma/client-runtime-utils").JsonNullCl
 export declare const AnyNull: import("@prisma/client-runtime-utils").AnyNullClass;
 export declare const ModelName: {
     readonly User: 'User';
+    readonly Flight: 'Flight';
+    readonly FlightSchedule: 'FlightSchedule';
+    readonly Booking: 'Booking';
 };
 export type ModelName = (typeof ModelName)[keyof typeof ModelName];
 export declare const TransactionIsolationLevel: {
@@ -38,10 +41,49 @@ export declare const UserScalarFieldEnum: {
     readonly name: 'name';
     readonly email: 'email';
     readonly password: 'password';
+    readonly role: 'role';
     readonly createdAt: 'createdAt';
     readonly updatedAt: 'updatedAt';
 };
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum];
+export declare const FlightScalarFieldEnum: {
+    readonly id: 'id';
+    readonly flightNumber: 'flightNumber';
+    readonly origin: 'origin';
+    readonly destination: 'destination';
+    readonly originCode: 'originCode';
+    readonly destinationCode: 'destinationCode';
+    readonly basePrice: 'basePrice';
+    readonly totalSeats: 'totalSeats';
+    readonly createdAt: 'createdAt';
+    readonly updatedAt: 'updatedAt';
+};
+export type FlightScalarFieldEnum = (typeof FlightScalarFieldEnum)[keyof typeof FlightScalarFieldEnum];
+export declare const FlightScheduleScalarFieldEnum: {
+    readonly id: 'id';
+    readonly flightId: 'flightId';
+    readonly departureDate: 'departureDate';
+    readonly departureTime: 'departureTime';
+    readonly arrivalTime: 'arrivalTime';
+    readonly availableSeats: 'availableSeats';
+    readonly status: 'status';
+    readonly createdAt: 'createdAt';
+    readonly updatedAt: 'updatedAt';
+};
+export type FlightScheduleScalarFieldEnum = (typeof FlightScheduleScalarFieldEnum)[keyof typeof FlightScheduleScalarFieldEnum];
+export declare const BookingScalarFieldEnum: {
+    readonly id: 'id';
+    readonly bookingReference: 'bookingReference';
+    readonly userId: 'userId';
+    readonly scheduleId: 'scheduleId';
+    readonly passengers: 'passengers';
+    readonly totalAmount: 'totalAmount';
+    readonly status: 'status';
+    readonly paymentStatus: 'paymentStatus';
+    readonly createdAt: 'createdAt';
+    readonly updatedAt: 'updatedAt';
+};
+export type BookingScalarFieldEnum = (typeof BookingScalarFieldEnum)[keyof typeof BookingScalarFieldEnum];
 export declare const SortOrder: {
     readonly asc: 'asc';
     readonly desc: 'desc';

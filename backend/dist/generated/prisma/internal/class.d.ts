@@ -128,6 +128,39 @@ export interface PrismaClient<in LogOpts extends Prisma.LogLevel = never, in out
     get user(): Prisma.UserDelegate<ExtArgs, {
         omit: OmitOpts;
     }>;
+    /**
+     * `prisma.flight`: Exposes CRUD operations for the **Flight** model.
+      * Example usage:
+      * ```ts
+      * // Fetch zero or more Flights
+      * const flights = await prisma.flight.findMany()
+      * ```
+      */
+    get flight(): Prisma.FlightDelegate<ExtArgs, {
+        omit: OmitOpts;
+    }>;
+    /**
+     * `prisma.flightSchedule`: Exposes CRUD operations for the **FlightSchedule** model.
+      * Example usage:
+      * ```ts
+      * // Fetch zero or more FlightSchedules
+      * const flightSchedules = await prisma.flightSchedule.findMany()
+      * ```
+      */
+    get flightSchedule(): Prisma.FlightScheduleDelegate<ExtArgs, {
+        omit: OmitOpts;
+    }>;
+    /**
+     * `prisma.booking`: Exposes CRUD operations for the **Booking** model.
+      * Example usage:
+      * ```ts
+      * // Fetch zero or more Bookings
+      * const bookings = await prisma.booking.findMany()
+      * ```
+      */
+    get booking(): Prisma.BookingDelegate<ExtArgs, {
+        omit: OmitOpts;
+    }>;
 }
 export declare function getPrismaClientClass(): PrismaClientConstructor;
 //# sourceMappingURL=class.d.ts.map
