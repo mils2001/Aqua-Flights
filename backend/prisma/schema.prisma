@@ -1,3 +1,5 @@
+
+
 generator client {
   provider = "prisma-client"
   output   = "../src/generated/prisma"
@@ -12,6 +14,53 @@ model User {
   name      String
   email     String   @unique
   password  String
+  role      String   @default("CUSTOMER")
+  bookings  Booking[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Flight {
+  id              Int               @id @default(autoincrement())
+  flightNumber    String            @unique
+  origin           String
+  destination      String
+  originCode       String
+  destinationCode  String
+  basePrice        Float
+  totalSeats       Int
+  schedules        FlightSchedule[]
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+}
+
+model FlightSchedule {
+  id              Int      @id @default(autoincrement())
+  flightId        Int
+  departureDate   DateTime
+  departureTime   String
+  arrivalTime     String
+  availableSeats  Int
+  status          String   @default("SCHEDULED")
+  flight          Flight   @relation(fields: [flightId], references: [id], onDelete: Cascade)
+  bookings        Booking[]
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@unique([flightId, departureDate, departureTime])
+}
+
+model Booking {
+  id              Int            @id @default(autoincrement())
+  bookingReference String         @unique
+  userId          Int
+  scheduleId      Int
+  passengers      Int            @default(1)
+  totalAmount     Float
+  status          String         @default("PENDING")
+  paymentStatus   String         @default("UNPAID")
+  user            User           @relation(fields: [userId], references: [id])
+  schedule        FlightSchedule @relation(fields: [scheduleId], references: [id])
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
 }
