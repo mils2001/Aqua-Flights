@@ -6,6 +6,70 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const prisma_1 = __importDefault(require("../lib/prisma"));
 const router = (0, express_1.Router)();
+// GET /api/flights/search
+router.get("/search", async (req, res) => {
+    try {
+        const { origin, destination, date } = req.query;
+        if (typeof origin !== "string" ||
+            !origin.trim() ||
+            typeof destination !== "string" ||
+            !destination.trim() ||
+            typeof date !== "string" ||
+            !/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+            return res.status(400).json({
+                message: "Provide origin, destination, and date using YYYY-MM-DD format.",
+            });
+        }
+        const startDate = new Date(`${date}T00:00:00.000Z`);
+        if (Number.isNaN(startDate.getTime()) ||
+            startDate.toISOString().slice(0, 10) !== date) {
+            return res.status(400).json({
+                message: "Provide a valid travel date.",
+            });
+        }
+        const endDate = new Date(startDate);
+        endDate.setUTCDate(endDate.getUTCDate() + 1);
+        const flights = await prisma_1.default.flight.findMany({
+            where: {
+                origin: { equals: origin.trim() },
+                destination: { equals: destination.trim() },
+                schedules: {
+                    some: {
+                        departureDate: { gte: startDate, lt: endDate },
+                        status: "SCHEDULED",
+                        availableSeats: { gt: 0 },
+                    },
+                },
+            },
+            include: {
+                schedules: {
+                    where: {
+                        departureDate: { gte: startDate, lt: endDate },
+                        status: "SCHEDULED",
+                        availableSeats: { gt: 0 },
+                    },
+                    orderBy: { departureTime: "asc" },
+                },
+            },
+            orderBy: { basePrice: "asc" },
+        });
+        return res.status(200).json({
+            count: flights.length,
+            search: {
+                origin: origin.trim(),
+                destination: destination.trim(),
+                date,
+            },
+            flights,
+        });
+    }
+    catch (error) {
+        console.error("Flight search error:", error);
+        return res.status(500).json({
+            message: "Could not search flights.",
+        });
+    }
+});
 // GET /api/flights
 router.get("/", async (_req, res) => {
     try {
@@ -30,14 +94,18 @@ router.get("/:id", async (req, res) => {
     try {
         const id = Number(req.params.id);
         if (!Number.isInteger(id) || id < 1) {
-            return res.status(400).json({ message: "Invalid flight ID" });
+            return res.status(400).json({
+                message: "Invalid flight ID",
+            });
         }
         const flight = await prisma_1.default.flight.findUnique({
             where: { id },
             include: { schedules: true },
         });
         if (!flight) {
-            return res.status(404).json({ message: "Flight not found" });
+            return res.status(404).json({
+                message: "Flight not found",
+            });
         }
         return res.status(200).json({ flight });
     }
@@ -113,7 +181,9 @@ router.put("/:id", async (req, res) => {
         const id = Number(req.params.id);
         const { destinationImage } = req.body;
         if (!Number.isInteger(id) || id < 1) {
-            return res.status(400).json({ message: "Invalid flight ID" });
+            return res.status(400).json({
+                message: "Invalid flight ID",
+            });
         }
         if (destinationImage !== null &&
             typeof destinationImage !== "string") {
@@ -132,7 +202,9 @@ router.put("/:id", async (req, res) => {
             where: { id },
         });
         if (!existingFlight) {
-            return res.status(404).json({ message: "Flight not found" });
+            return res.status(404).json({
+                message: "Flight not found",
+            });
         }
         const flight = await prisma_1.default.flight.update({
             where: { id },
@@ -160,7 +232,9 @@ router.post("/:id/schedules", async (req, res) => {
         const flightId = Number(req.params.id);
         const { departureDate, departureTime, arrivalTime, availableSeats, } = req.body;
         if (!Number.isInteger(flightId) || flightId < 1) {
-            return res.status(400).json({ message: "Invalid flight ID" });
+            return res.status(400).json({
+                message: "Invalid flight ID",
+            });
         }
         if (typeof departureDate !== "string" ||
             !/^\d{4}-\d{2}-\d{2}$/.test(departureDate)) {
@@ -191,7 +265,9 @@ router.post("/:id/schedules", async (req, res) => {
             where: { id: flightId },
         });
         if (!flight) {
-            return res.status(404).json({ message: "Flight not found" });
+            return res.status(404).json({
+                message: "Flight not found",
+            });
         }
         if (availableSeats > flight.totalSeats) {
             return res.status(400).json({
